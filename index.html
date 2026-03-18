@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新規企画班 組織図プレビュー</title>
+<style>
+    body {
+        font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+        background-color: #f4f7f6;
+        color: #333;
+        margin: 0;
+        padding: 40px 20px;
+    }
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    h1 {
+        color: #2c3e50;
+        margin-bottom: 40px;
+    }
+    /* 組織図の基本スタイル */
+    .org-box {
+        background: #fff;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 10px auto;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        border-top: 4px solid #3498db;
+        width: 80%;
+        position: relative;
+    }
+    .top-org { border-top-color: #95a5a6; width: 60%; }
+    .partner-org { border-top-color: #f39c12; width: 60%; display: inline-block; margin: 10px; }
+    
+    .line {
+        width: 2px;
+        height: 30px;
+        background-color: #bdc3c7;
+        margin: 0 auto;
+    }
+    .horizontal-line {
+        width: 60%;
+        height: 2px;
+        background-color: #bdc3c7;
+        margin: 0 auto;
+    }
+    
+    /* チームごとのスタイル */
+    .teams-wrapper {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        gap: 15px;
+    }
+    .team-card {
+        flex: 1;
+        background: #fff;
+        border-radius: 8px;
+        padding: 20px 10px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+        border-top: 4px solid #2ecc71;
+    }
+    .team-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        background-color: #f0fdf4;
+    }
+    .team-title {
+        font-size: 1.2em;
+        font-weight: bold;
+        color: #27ae60;
+        margin-bottom: 10px;
+    }
+    .role {
+        font-size: 0.9em;
+        color: #7f8c8d;
+    }
+
+    /* 詳細パネル（最初は非表示） */
+    .details-panel {
+        display: none;
+        background: #fff;
+        margin-top: 30px;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        text-align: left;
+        border-left: 5px solid #34495e;
+        animation: fadeIn 0.3s ease-in-out;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .details-panel h3 {
+        margin-top: 0;
+        color: #2c3e50;
+        border-bottom: 2px solid #ecf0f1;
+        padding-bottom: 10px;
+    }
+    .connection-box {
+        background: #ecf0f1;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 15px;
+    }
+    .badge {
+        display: inline-block;
+        background: #e74c3c;
+        color: white;
+        padding: 3px 8px;
+        border-radius: 12px;
+        font-size: 0.8em;
+        margin-bottom: 10px;
+    }
+
+    /* 矢印 */
+    .arrow { margin: 10px 0; color: #7f8c8d; font-weight: bold; }
+
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>ユートミヤ 新規企画班 組織図</h1>
+    <p style="color: #7f8c8d; margin-bottom: 30px;">※各チーム（緑色のカード）をクリックすると、外部との繋がりや詳細が表示されます。</p>
+
+    <div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+        <div class="org-box top-org">
+            <strong>ユーとミー（全体組織）</strong>
+            <div class="role">総会・会員全体</div>
+        </div>
+        <div style="font-size: 1.5em; color: #bdc3c7;">↔</div>
+        <div class="org-box partner-org">
+            <strong>富谷市・施設側</strong>
+            <div class="role">連携パートナー・アドバイザー</div>
+        </div>
+    </div>
+
+    <div class="line"></div>
+
+    <div class="org-box">
+        <h2 style="margin: 0 0 10px 0; color: #2980b9;">新規企画班</h2>
+        <div class="role"><strong>代表 / 副代表</strong> (全体統括)</div>
+    </div>
+
+    <div class="line"></div>
+    <div class="horizontal-line"></div>
+    
+    <div style="display: flex; justify-content: space-around; width: 60%; margin: 0 auto;">
+        <div class="line" style="height: 20px;"></div>
+        <div class="line" style="height: 20px;"></div>
+        <div class="line" style="height: 20px;"></div>
+    </div>
+
+    <div class="teams-wrapper">
+        <div class="team-card" onclick="showDetails('reception')">
+            <div class="team-title">受け入れチーム</div>
+            <div class="role">幹部（リーダー / 副リーダー）<br>＋ メンバー</div>
+            <div style="margin-top: 15px; font-size: 0.8em; color: #e67e22;">▶ クリックして詳細を表示</div>
+        </div>
+
+        <div class="team-card" onclick="showDetails('pr')" style="border-top-color: #9b59b6;">
+            <div class="team-title" style="color: #8e44ad;">広報チーム</div>
+            <div class="role">幹部（リーダー / 副リーダー）<br>＋ メンバー</div>
+            <div style="margin-top: 15px; font-size: 0.8em; color: #e67e22;">▶ クリックして詳細を表示</div>
+        </div>
+
+        <div class="team-card" onclick="showDetails('planning')" style="border-top-color: #f1c40f;">
+            <div class="team-title" style="color: #f39c12;">企画チーム</div>
+            <div class="role">幹部（リーダー / 副リーダー）<br>＋ メンバー</div>
+            <div style="margin-top: 15px; font-size: 0.8em; color: #e67e22;">▶ クリックして詳細を表示</div>
+        </div>
+    </div>
+
+    <div id="details-reception" class="details-panel" style="border-left-color: #2ecc71;">
+        <h3>受け入れチーム の詳細・連携先</h3>
+        <p>市民からの企画提案を受け付け、実現に向けたサポートや選考を行うチームです。</p>
+        <div class="connection-box">
+            <span class="badge">外部の入り口（唯一の窓口）</span>
+            <div><strong>市民・提案者</strong></div>
+            <div class="arrow">↓ 提案・提出</div>
+            <div><strong>受け入れチーム</strong></div>
+            <ul style="color: #555; font-size: 0.9em; margin-top: 10px;">
+                <li>企画要件（公益性、実現可能性など）の審査</li>
+                <li>オープンな「企画会議」の実施・運営</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="details-pr" class="details-panel" style="border-left-color: #9b59b6;">
+        <h3>広報チーム の詳細・連携先</h3>
+        <p>新規企画班の取り組みや、決定したイベント情報を外部へ発信するチームです。</p>
+        <div class="connection-box">
+            <div><strong>広報チーム</strong></div>
+            <div class="arrow">↓ 情報発信・PR</div>
+            <div><strong>市民・ユーとミー会員・各種メディア</strong></div>
+            <ul style="color: #555; font-size: 0.9em; margin-top: 10px;">
+                <li>企画募集の呼びかけ</li>
+                <li>イベント開催の告知</li>
+                <li>ユートミヤの魅力発信</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="details-planning" class="details-panel" style="border-left-color: #f1c40f;">
+        <h3>企画チーム の詳細・連携先</h3>
+        <p>新規企画班が自ら主催（自前）するイベントやワークショップの企画・運営を行うチームです。</p>
+        <div class="connection-box">
+            <div><strong>企画チーム</strong></div>
+            <div class="arrow">↓ 企画・運営</div>
+            <div><strong>自前イベント / ワークショップ</strong></div>
+            <ul style="color: #555; font-size: 0.9em; margin-top: 10px;">
+                <li>企画のテーマの決定</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function showDetails(teamId) {
+        // 全ての詳細パネルを非表示にする
+        document.getElementById('details-reception').style.display = 'none';
+        document.getElementById('details-pr').style.display = 'none';
+        document.getElementById('details-planning').style.display = 'none';
+
+        // 選択されたパネルだけを表示する
+        document.getElementById('details-' + teamId).style.display = 'block';
+        
+        // 少しスクロールして見やすくする
+        setTimeout(() => {
+            document.getElementById('details-' + teamId).scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 50);
+    }
+</script>
+
+</body>
+</html>
